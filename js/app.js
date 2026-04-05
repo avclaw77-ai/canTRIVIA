@@ -23,6 +23,15 @@
   const $ = (sel) => document.querySelector(sel);
   const $$ = (sel) => document.querySelectorAll(sel);
 
+  // ─── Screen reader announcements ─────────
+  function announce(message) {
+    const el = document.getElementById("sr-announcements");
+    if (el) {
+      el.textContent = "";
+      requestAnimationFrame(() => { el.textContent = message; });
+    }
+  }
+
   // ─── Confetti ────────────────────────────
   function createConfetti() {
     const container = document.createElement("div");
@@ -261,6 +270,9 @@
     const q = state.questions[state.currentIndex];
     if (index === q.correctIndex) {
       state.score++;
+      announce(t("correct"));
+    } else {
+      announce(t("incorrect"));
     }
     renderGame();
   }
@@ -272,6 +284,7 @@
       state.answered = false;
       state.selectedIndex = null;
       renderGame();
+      announce(t("question") + " " + (state.currentIndex + 1) + " " + t("of") + " " + state.questions.length);
     } else {
       showResults();
     }
@@ -281,6 +294,7 @@
   function showResults() {
     state.screen = "results";
     const total = state.questions.length;
+    announce(t("yourScore") + " " + state.score + " " + t("outOf") + " " + total);
     const pct = state.score / total;
     const isPerfect = pct === 1;
 
