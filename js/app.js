@@ -386,6 +386,7 @@
         const newLang = getLang() === "en" ? "fr" : "en";
         setLang(newLang);
         document.getElementById("lang-toggle").textContent = t("langToggle");
+        updateFooter();
         if (state.screen === "home") renderHome();
         else if (state.screen === "game") renderGame();
         else showResults();
@@ -414,11 +415,20 @@
     });
   }
 
+  // ─── Footer i18n ─────────────────────────
+  function updateFooter() {
+    const footer = document.querySelector(".site-footer p");
+    if (footer) {
+      footer.innerHTML = t("footer").replace("canLM", '<a href="https://ottavo.coraxi.ai/en" target="_blank" rel="noopener noreferrer">canLM</a>');
+    }
+  }
+
   // ─── Init ────────────────────────────────
   function init() {
     initLang();
     setupLangToggle();
     setupKeyboard();
+    updateFooter();
     renderHome();
   }
 

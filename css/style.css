@@ -18,7 +18,7 @@
   --cream: #FFF8F0;
   --gold: #F59E0B;
   --gold-light: #FEF3C7;
-  --green: #16A34A;
+  --green: #15803D;
   --green-light: #DCFCE7;
   --gray-50: #F9FAFB;
   --gray-100: #F3F4F6;
@@ -450,7 +450,7 @@ body {
 .option-btn.incorrect {
   background: var(--red-light);
   border-color: var(--red);
-  color: var(--red);
+  color: var(--red-dark);
 }
 
 .option-btn.incorrect::after {
@@ -491,7 +491,7 @@ body {
 }
 
 .feedback-correct .feedback-label { color: var(--green); }
-.feedback-incorrect .feedback-label { color: var(--red); }
+.feedback-incorrect .feedback-label { color: var(--red-dark); }
 
 .fun-fact {
   background: rgba(255,255,255,0.7);
